@@ -1,7 +1,15 @@
 #include "pch.h"
+#include "Point.h"
 
 int main()
 {
+	Point p1 = Point(-1, 2);
+	Point p2 = Point(1, 1);
+	Point result = p1 + p2;
+
+	std::cout << p1 << " + " << p2 << " = " << result;
+
+
     GLFWwindow* window;
 
 	/* Initialize the library */
