@@ -3,11 +3,11 @@
 
 int main()
 {
-	Point p1 = Point(-1, 2);
-	Point p2 = Point(1, 1);
-	Point result = p1 + p2;
+	//Point p1 = Point(-1, 2);
+	//Point p2 = Point(1, 1);
+	//Point result = p1 + p2;
 
-	std::cout << p1 << " + " << p2 << " = " << result;
+	std::cout << Point(0, 0) << std::endl;// << " + " << p2 << " = " << result;
 
 
     GLFWwindow* window;
