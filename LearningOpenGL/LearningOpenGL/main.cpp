@@ -40,6 +40,24 @@ int main()
 		return -1;
 	}
 
+	//Set up the triangle
+	GLuint VertexArrayID;
+	glGenVertexArrays(1, &VertexArrayID);
+	glBindVertexArray(VertexArrayID);
+
+	//Set the points
+	static const GLfloat g_vertex_buffer_data[] = {
+		(*triangle)[0].x, (*triangle)[0].y, (*triangle)[0].z,
+		(*triangle)[1].x, (*triangle)[1].y, (*triangle)[1].z,
+		(*triangle)[2].x, (*triangle)[2].y, (*triangle)[2].z,
+	};
+
+	//Setup the buffer
+	GLuint vertexbuffer;
+	glGenBuffers(1, &vertexbuffer);
+	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
+
 	glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
 
 	do {
@@ -47,6 +65,12 @@ int main()
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		//Draw
+		glEnableVertexAttribArray(0);
+		glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
+		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
+
+		glDrawArrays(GL_TRIANGLES, 0, 3);
+		glDisableVertexAttribArray(0);
 
 		//Swap buffers
 		glfwSwapBuffers(window);
