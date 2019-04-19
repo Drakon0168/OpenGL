@@ -1,9 +1,15 @@
 #include "pch.h"
+#include "Helper.h"
 #include "Point2D.h"
 #include "Point3D.h"
 
 int main()
 {
+	shared_ptr<vector<Point3D>> triangle = shared_ptr<vector<Point3D>>(new vector<Point3D>());
+	triangle->push_back(Point3D(0, 0.5, 0));
+	triangle->push_back(Point3D(-0.5, -0.5, 0));
+	triangle->push_back(Point3D(0.5, -0.5, 0));
+
     GLFWwindow* window;
 
 	/* Initialize the library */
@@ -21,6 +27,12 @@ int main()
 
 	/* Make the window's context current */
 	glfwMakeContextCurrent(window);
+
+	GLuint VertexArrayID;
+	glGenVertexArrays(1, &VertexArrayID);
+	glBindVertexArray(VertexArrayID);
+
+	cout << "Float Array: " << Helper::Point3D_Vector_To_Float_Array(*triangle) << endl;
 
 	/* Loop until the user closes the window */
 	while (!glfwWindowShouldClose(window))
