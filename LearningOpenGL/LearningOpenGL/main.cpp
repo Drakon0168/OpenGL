@@ -10,6 +10,20 @@ int main()
 	triangle->push_back(Point3D(-0.5, -0.5, 0));
 	triangle->push_back(Point3D(0.5, -0.5, 0));
 
+	shared_ptr<GLfloat[]> floats = Helper::Point3D_Vector_To_Float_Array(*triangle);
+
+	cout << "Triangle Array: " << endl;
+
+	for (int i = 0; i < sizeof(floats) / sizeof(float); i++) {
+		cout << floats[i] << ", ";
+	}
+
+	cout << endl << "Triangle Vector: " << endl;
+
+	for (int i = 0; i < triangle->size(); i++) {
+		cout << (*triangle)[i] << endl;
+	}
+
     GLFWwindow* window;
 
 	/* Initialize the library */
@@ -27,12 +41,6 @@ int main()
 
 	/* Make the window's context current */
 	glfwMakeContextCurrent(window);
-
-	GLuint VertexArrayID;
-	glGenVertexArrays(1, &VertexArrayID);
-	glBindVertexArray(VertexArrayID);
-
-	cout << "Float Array: " << Helper::Point3D_Vector_To_Float_Array(*triangle) << endl;
 
 	/* Loop until the user closes the window */
 	while (!glfwWindowShouldClose(window))
