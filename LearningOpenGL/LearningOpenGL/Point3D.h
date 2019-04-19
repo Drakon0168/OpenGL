@@ -43,6 +43,7 @@ Point3D::Point3D()
 {
 	x = NULL;
 	y = NULL;
+	z = NULL;
 }
 
 Point3D::Point3D(float x, float y, float z)
@@ -56,6 +57,7 @@ Point3D::Point3D(const Point3D& other)
 {
 	x = other.x;
 	y = other.y;
+	z = other.z;
 }
 
 Point3D::~Point3D()
@@ -66,6 +68,7 @@ void Point3D::operator=(const Point3D& other)
 {
 	x = other.x;
 	y = other.y;
+	z = other.z;
 }
 
 Point3D Point3D::operator+=(const Point3D& other) {
