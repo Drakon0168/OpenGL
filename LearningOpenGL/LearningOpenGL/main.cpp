@@ -3,6 +3,12 @@
 #include "Point2D.h"
 #include "Point3D.h"
 
+#include "loadShader.h"
+
+//typedef basic_ios<char> ios;
+
+//Following a Tutorial, http://www.opengl-tutorial.org/beginners-tutorials/
+
 int main()
 {
 	shared_ptr<vector<Point3D>> triangle = shared_ptr<vector<Point3D>>(new vector<Point3D>());
@@ -60,9 +66,15 @@ int main()
 
 	glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
 
+	GLuint programID = LoadShaders("SimpleVertexShader.vertexshader", "SimpleFragmentShader.fragmentshader");
+
+	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+
 	do {
 		//Clear the screen
-		glClear(GL_COLOR_BUFFER_BIT);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+		glUseProgram(programID);
 
 		//Draw
 		glEnableVertexAttribArray(0);
