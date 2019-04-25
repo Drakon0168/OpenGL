@@ -11,12 +11,10 @@
 
 int main()
 {
-	shared_ptr<vector<Point3D>> triangle = shared_ptr<vector<Point3D>>(new vector<Point3D>());
-	triangle->push_back(Point3D(0, 0.5, 0));
-	triangle->push_back(Point3D(-0.5, -0.5, 0));
-	triangle->push_back(Point3D(0.5, -0.5, 0));
-
-	shared_ptr<GLfloat[]> floats = Helper::Point3D_Vector_To_Float_Array(*triangle);
+	vector<Point3D> triangle;
+	triangle.push_back(Point3D(0, 0.5, 0));
+	triangle.push_back(Point3D(-0.5, -0.5, 0));
+	triangle.push_back(Point3D(0.5, -0.5, 0));
 
 	glewExperimental = true;
 	if (!glfwInit()) {
@@ -52,10 +50,10 @@ int main()
 	glBindVertexArray(VertexArrayID);
 
 	//Set the points
-	static const GLfloat g_vertex_buffer_data[] = {
-		(*triangle)[0].x, (*triangle)[0].y, (*triangle)[0].z,
-		(*triangle)[1].x, (*triangle)[1].y, (*triangle)[1].z,
-		(*triangle)[2].x, (*triangle)[2].y, (*triangle)[2].z,
+	GLfloat g_vertex_buffer_data[] = {
+		triangle[0].x, triangle[0].y, triangle[0].z,
+		triangle[1].x, triangle[1].y, triangle[1].z,
+		triangle[2].x, triangle[2].y, triangle[2].z,
 	};
 
 	//Setup the buffer

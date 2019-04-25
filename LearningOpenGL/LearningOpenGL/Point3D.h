@@ -8,9 +8,11 @@ public:
 	float x;
 	float y;
 	float z;
+	bool direction;
 
 	Point3D();
 	Point3D(float x, float y, float z);
+	Point3D(float x, float y, float z, bool direction);
 	Point3D(const Point3D& other);
 	~Point3D();
 
@@ -44,6 +46,7 @@ Point3D::Point3D()
 	x = NULL;
 	y = NULL;
 	z = NULL;
+	direction = false;
 }
 
 Point3D::Point3D(float x, float y, float z)
@@ -51,6 +54,14 @@ Point3D::Point3D(float x, float y, float z)
 	this->x = x;
 	this->y = y;
 	this->z = z;
+	direction = false;
+}
+
+Point3D::Point3D(float x, float y, float z, bool direction) {
+	this->x = x;
+	this->y = y;
+	this->z = z;
+	this->direction = direction;
 }
 
 Point3D::Point3D(const Point3D& other)
@@ -58,6 +69,7 @@ Point3D::Point3D(const Point3D& other)
 	x = other.x;
 	y = other.y;
 	z = other.z;
+	direction = other.direction;
 }
 
 Point3D::~Point3D()
@@ -69,6 +81,7 @@ void Point3D::operator=(const Point3D& other)
 	x = other.x;
 	y = other.y;
 	z = other.z;
+	direction = other.direction;
 }
 
 Point3D Point3D::operator+=(const Point3D& other) {
@@ -103,11 +116,11 @@ Point3D Point3D::operator/=(const int& i) {
 
 bool Point3D::operator==(const Point3D& other)
 {
-	return (x == other.x && y == other.y && z == other.z);
+	return (direction == other.direction && x == other.x && y == other.y && z == other.z);
 }
 
 bool Point3D::operator!=(const Point3D& other) {
-	return (x != other.x || y != other.y || z != other.z);
+	return (direction != other.direction || x != other.x || y != other.y || z != other.z);
 }
 
 Point3D Point3D::operator+(const Point3D& other) {
